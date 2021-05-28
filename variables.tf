@@ -5,7 +5,7 @@ variable "cidr_block" {
 
 variable "ports" {
     type = list(number)
-    default = [22,80,8080,443,8081]
+    default = [22,80,8080,443,8081,9000]
 }
 
 variable "ami" {
@@ -19,6 +19,11 @@ variable "instance_type" {
 }
 
 variable "instance_type_nexus" {
+    type = string
+    default = "t2.medium"
+}
+
+variable "instance_type_sonar" {
     type = string
     default = "t2.medium"
 }

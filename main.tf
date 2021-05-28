@@ -156,3 +156,18 @@ resource "aws_route_table_association" "lab-rt-assoc" {
     Name = "nexus"
   }
 }
+
+#SonarQube
+ resource "aws_instance" "SonarQubeServer" {
+  ami           = var.ami
+  instance_type = var.instance_type_sonar
+  key_name = "ec2"
+  vpc_security_group_ids = [aws_security_group.lab-sg.id]
+  subnet_id = aws_subnet.lab-subnet1.id
+  associate_public_ip_address = true
+  user_data = file("./InstallSonarqube.sh")
+
+  tags = {
+    Name = "SonarQubeServer"
+  }
+}
